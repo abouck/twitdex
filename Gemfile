@@ -6,7 +6,7 @@ gem 'rails', '4.0.1'
 ruby '2.0.0'
 gem 'mongoid', github: 'mongoid/mongoid'
 
-# gem 'devise', github: 'plataformatec/devise'
+gem 'devise', github: 'plataformatec/devise'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -34,6 +34,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 2.0'
+  gem 'mongoid-rspec'
+end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
