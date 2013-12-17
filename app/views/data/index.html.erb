@@ -1,0 +1,5 @@
+<h1>All the Data!</h1>
+
+<% @data.each do |point| %>
+  <p><%= point.time %> : <%= point.data["MCD"][2] %> <%= point.data["NKE"][2] %> <%= point.data["GE"][2] %> <%= point.data["DJI"][2] %></p>
+<% end %>

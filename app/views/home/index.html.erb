@@ -1,1 +1,158 @@
-<h1>Homepage!</h1>
+
+        <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css">       
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js"></script>
+
+
+<div id="content">
+
+        <form id="side_panel">
+                <h1>Random Data in the Future</h1>
+                <section><div id="legend"></div></section>
+        </form>
+
+        <div id="chart_container">
+                <div id="chart"></div>
+                <div id="timeline"></div>
+                <div id="preview"></div>
+        </div>
+
+</div>
+
+<script>
+
+// set up our data series with 150 random data points
+var start = true
+var seriesData = [[{x: 1387223849, y: 0}, {x: 1387223909, y: 0}, {x: 1387223969, y: 0} ], [{x: 1387223849, y: 0.4}, {x: 1387223909, y: -0.4}, {x: 1387223969, y:0}], [{x: 1387223849, y: 0}, {x: 1387223909, y: 0.6}, {x: 1387223969, y: 0}], [{x: 1387223849, y: 0.8}, {x: 1387223909, y: 0}, {x: 1387223969, y: 0}], [{x: 1387223849, y: 0}, {x: 1387223909, y: 0}, {x: 1387223969, y: 0}], [{x: 1387223849, y: 0}, {x: 1387223909, y: 0}, {x: 1387223969, y: 0}], [{x: 1387223849, y: 0}, {x: 1387223909, y: 0}, {x: 1387223969, y: 0}]];
+var seriesSetup = [];
+var palette = new Rickshaw.Color.Palette( { scheme: 'classic9' } );
+
+var graph = 0
+// instantiate our graph!
+
+var setup = function() {
+
+  graph = new Rickshaw.Graph( {
+  element: document.getElementById("chart"),
+  width: 900,
+  height: 500,
+  renderer: 'line',
+  min: 'auto',
+  interpolation: 'linear',
+  series: seriesSetup
+} );
+
+
+
+// var preview = new Rickshaw.Graph.RangeSlider.Preview( {
+//         graph: graph,
+//         element: document.getElementById('preview'),
+// } );
+
+var hoverDetail = new Rickshaw.Graph.HoverDetail( {
+        graph: graph,
+        xFormatter: function(x) {
+                return new Date(x * 1000).toString();
+        }
+} );
+
+var annotator = new Rickshaw.Graph.Annotate( {
+        graph: graph,
+        element: document.getElementById('timeline')
+} );
+
+var legend = new Rickshaw.Graph.Legend( {
+        graph: graph,
+        element: document.getElementById('legend')
+
+} );
+
+var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
+        graph: graph,
+        legend: legend
+} );
+
+var order = new Rickshaw.Graph.Behavior.Series.Order( {
+        graph: graph,
+        legend: legend
+} );
+
+var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight( {
+        graph: graph,
+        legend: legend
+} );
+
+var smoother = new Rickshaw.Graph.Smoother( {
+        graph: graph,
+        element: $('#smoother')
+} );
+
+var ticksTreatment = 'glow';
+
+var xAxis = new Rickshaw.Graph.Axis.Time( {
+        graph: graph,
+        ticksTreatment: ticksTreatment,
+        timeFixture: new Rickshaw.Fixtures.Time.Local()
+} );
+
+xAxis.render();
+
+var yAxis = new Rickshaw.Graph.Axis.Y( {
+        graph: graph,
+        tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
+        ticksTreatment: ticksTreatment
+} );
+
+yAxis.render();
+
+var controls = new RenderControls( {
+        element: document.querySelector('form'),
+        graph: graph
+} );
+
+      graph.series = seriesSetup
+      graph.render(); 
+
+var upGraph = graph.update()
+
+
+}
+// add some data every so often
+
+// var messages = [
+//         "Changed home page welcome message",
+//         "Minified JS and CSS",
+//         "Changed button color from blue to green",
+//         "Refactored SQL query to use indexed columns",
+//         "Added additional logging for debugging",
+//         "Fixed typo",
+//         "Rewrite conditional logic for clarity",
+//         "Added documentation for new methods"
+// ];
+
+// setInterval( function() {
+//         random.removeData(seriesData);
+//         random.addData(seriesData);
+//         graph.update();
+
+// }, 3000 );
+
+// function addAnnotation(force) {
+//         if (messages.length > 0 && (force || Math.random() >= 0.95)) {
+//                 annotator.add(seriesData[2][seriesData[2].length-1].x, messages.shift());
+//         }
+// }
+
+// addAnnotation(true);
+// setTimeout( function() { setInterval( addAnnotation, 6000 ) }, 6000 );
+
+// var previewXAxis = new Rickshaw.Graph.Axis.Time({
+//         graph: preview.previews[0],
+//         timeFixture: new Rickshaw.Fixtures.Time.Local(),
+//         ticksTreatment: ticksTreatment
+// });
+
+// previewXAxis.render();
+
+</script>

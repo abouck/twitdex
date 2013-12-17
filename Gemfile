@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
+gem 'rickshaw_rails'
+
 ruby '2.0.0'
 gem 'mongoid', github: 'mongoid/mongoid'
 
