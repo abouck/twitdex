@@ -1,5 +1,5 @@
 $(function() {
-    var socket = io.connect('http://localhost:8080');
+    var socket = io.connect('http://vast-tor-5629.herokuapp.com/');
     socket.on('news', function (data) {
       console.log(data);
     });

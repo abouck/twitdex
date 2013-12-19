@@ -5,6 +5,7 @@ gem 'rails', '4.0.1'
 
 gem 'rickshaw_rails'
 
+gem 'rails_12factor'
 ruby '2.0.0'
 gem 'mongoid', github: 'mongoid/mongoid'
 
