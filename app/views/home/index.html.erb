@@ -8,7 +8,7 @@
 <div id="content">
 
         <form id="side_panel">
-                <h1>Random Data in the Future</h1>
+                <h1>Datastuffs</h1>
                 <section><div id="legend"></div></section>
         </form>
 
@@ -24,9 +24,11 @@
 
 // set up our data series with 150 random data points
 var start = true
+var top = 5
+var bottom = -5
 var seriesData = [[{x: 1387223849, y: 0}, {x: 1387223909, y: 0}, {x: 1387223969, y: 0} ], [{x: 1387223849, y: 0.4}, {x: 1387223909, y: -0.4}, {x: 1387223969, y:0}], [{x: 1387223849, y: 0}, {x: 1387223909, y: 0.6}, {x: 1387223969, y: 0}], [{x: 1387223849, y: 0.8}, {x: 1387223909, y: 0}, {x: 1387223969, y: 0}], [{x: 1387223849, y: 0}, {x: 1387223909, y: 0}, {x: 1387223969, y: 0}], [{x: 1387223849, y: 0}, {x: 1387223909, y: 0}, {x: 1387223969, y: 0}], [{x: 1387223849, y: 0}, {x: 1387223909, y: 0}, {x: 1387223969, y: 0}]];
 var seriesSetup = [];
-var palette = new Rickshaw.Color.Palette( { scheme: 'classic9' } );
+var palette = new Rickshaw.Color.Palette( { scheme: 'munin' } );
 
 var graph = 0
 // instantiate our graph!
@@ -38,7 +40,8 @@ var setup = function() {
   width: 900,
   height: 500,
   renderer: 'line',
-  min: 'auto',
+  min: -8,
+  max: 8,
   interpolation: 'linear',
   series: seriesSetup
 } );
@@ -55,11 +58,6 @@ var hoverDetail = new Rickshaw.Graph.HoverDetail( {
         xFormatter: function(x) {
                 return new Date(x * 1000).toString();
         }
-} );
-
-var annotator = new Rickshaw.Graph.Annotate( {
-        graph: graph,
-        element: document.getElementById('timeline')
 } );
 
 var legend = new Rickshaw.Graph.Legend( {
@@ -83,10 +81,7 @@ var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight( {
         legend: legend
 } );
 
-var smoother = new Rickshaw.Graph.Smoother( {
-        graph: graph,
-        element: $('#smoother')
-} );
+
 
 var ticksTreatment = 'glow';
 
